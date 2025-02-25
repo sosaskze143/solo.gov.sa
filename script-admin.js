@@ -8,13 +8,36 @@ function displayUsers() {
     users.forEach((user, index) => {
         const li = document.createElement('li');
         li.innerHTML = `
-            <span>${user.name} (${user.id})</span>
+            <span>${user.name} (${user.id}) - رقم التعريف: ${user.identifier || 'غير متوفر'}</span>
             <button onclick="editUser(${index})">تعديل</button>
             <button onclick="deleteUser(${index})">حذف</button>
         `;
         userList.appendChild(li);
     });
 }
+
+// بحث عن المستخدم باستخدام رقم التعريف
+document.getElementById('search-button').addEventListener('click', function () {
+    const searchId = document.getElementById('search-id').value;
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const searchResults = document.getElementById('search-results');
+
+    searchResults.innerHTML = ''; // مسح نتائج البحث السابقة
+
+    const foundUser = users.find(user => user.identifier === searchId);
+
+    if (foundUser) {
+        const li = document.createElement('li');
+        li.innerHTML = `
+            <span>${foundUser.name} (${foundUser.id}) - رقم التعريف: ${foundUser.identifier}</span>
+            <button onclick="editUser(${users.indexOf(foundUser)})">تعديل</button>
+            <button onclick="deleteUser(${users.indexOf(foundUser)})">حذف</button>
+        `;
+        searchResults.appendChild(li);
+    } else {
+        searchResults.innerHTML = '<li>لم يتم العثور على مستخدم بهذا الرقم.</li>';
+    }
+});
 
 // تعديل مستخدم
 function editUser(index) {
