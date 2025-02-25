@@ -26,22 +26,23 @@ window.onload = function () {
     const user = JSON.parse(localStorage.getItem('currentUser')); // بيانات المستخدم الحالي
 
     if (user) {
-        // إنشاء رقم تعريف وتواريخ تلقائية
-        const uniqueId = generateUniqueId();
+        // إنشاء رقم تعريف جديد فقط إذا لم يكن موجودًا
+        if (!user.identifier) {
+            user.identifier = generateUniqueId();
+            localStorage.setItem('currentUser', JSON.stringify(user));
+
+            // تحديث بيانات المستخدم في القائمة العامة
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const userIndex = users.findIndex(u => u.id === user.id);
+            if (userIndex !== -1) {
+                users[userIndex] = user;
+                localStorage.setItem('users', JSON.stringify(users));
+            }
+        }
+
+        // إنشاء تواريخ تلقائية
         const duration = 12; // فترة الانتهاء الافتراضية (12 شهرًا)
         const { issueDate, expiryDate } = generateDates(duration);
-
-        // حفظ رقم التعريف في بيانات المستخدم
-        user.identifier = uniqueId;
-        localStorage.setItem('currentUser', JSON.stringify(user));
-
-        // تحديث بيانات المستخدم في القائمة العامة
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const userIndex = users.findIndex(u => u.id === user.id);
-        if (userIndex !== -1) {
-            users[userIndex] = user;
-            localStorage.setItem('users', JSON.stringify(users));
-        }
 
         // عرض البطاقة
         document.getElementById('preview-name').textContent = user.name;
@@ -51,11 +52,11 @@ window.onload = function () {
         document.getElementById('birthdate').textContent = user.birthdate;
         document.getElementById('issue-date').textContent = issueDate;
         document.getElementById('expiry-date').textContent = expiryDate;
-        document.getElementById('identifier').textContent = uniqueId;
+        document.getElementById('identifier').textContent = user.identifier;
         document.getElementById('card-number').textContent = cardNumber;
 
         // إنشاء باركود لرقم التعريف
-        JsBarcode("#barcode", uniqueId, {
+        JsBarcode("#barcode", user.identifier, {
             format: "CODE128",
             displayValue: true,
             fontSize: 16,
