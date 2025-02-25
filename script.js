@@ -54,7 +54,7 @@ document.getElementById('register-form').addEventListener('submit', function (e)
     }
 
     // إضافة المستخدم الجديد
-    const newUser = { name, id, password, gender, nationality, birthdate };
+    const newUser = { name, id, password, gender, nationality, birthdate, identifier: null }; // رقم التعريف يبدأ كـ null
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
 
