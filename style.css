@@ -7,6 +7,10 @@ body {
     margin: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -20,6 +24,42 @@ body {
     font-size: 2.5rem;
     color: #5a3a22; /* لون العنوان */
     margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #5a3a22; /* لون العناوين الفرعية */
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select, button {
+    padding: 10px;
+    border: 1px solid #5a3a22; /* لون الحدود */
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: #5a3a22; /* لون الخلفية للأزرار */
+    color: #ffffff; /* لون النص على الأزرار */
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff8c42; /* لون الخلفية عند التمرير */
+}
+
+.error-message {
+    color: red; /* لون رسائل الخطأ */
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
 .card {
@@ -68,39 +108,4 @@ body {
 }
 
 .security-strip {
-    background-color: #ff8c42; /* لون الشريط البرتقالي */
-    color: #ffffff; /* لون النص على الشريط */
-    padding: 10px;
-    font-weight: bold;
-    text-align: center;
-    border-radius: 5px;
-    margin-top: 20px;
-    animation: moveStrip 2s infinite;
-}
-
-.barcode {
-    height: 50px;
-    background-color: #000;
-    margin: 20px 0;
-}
-
-@keyframes moveStrip {
-    0% { transform: translateX(-10px); }
-    50% { transform: translateX(10px); }
-    100% { transform: translateX(-10px); }
-}
-
-button {
-    background-color: #5a3a22; /* لون الخلفية للأزرار */
-    color: #ffffff; /* لون النص على الأزرار */
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px;
-    font-size: 1rem;
-}
-
-button:hover {
-    background-color: #ff8c42; /* لون الخلفية عند التمرير */
-}
+    background-color:
