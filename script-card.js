@@ -18,6 +18,9 @@ function generateDates() {
     };
 }
 
+// إنشاء رقم بطاقة تلقائي
+let cardNumber = 1;
+
 // عرض بيانات المستخدم
 window.onload = function () {
     const user = JSON.parse(localStorage.getItem('currentUser')); // بيانات المستخدم الحالي
@@ -35,6 +38,7 @@ window.onload = function () {
         document.getElementById('birthdate').textContent = user.birthdate;
         document.getElementById('issue-date').textContent = issueDate;
         document.getElementById('expiry-date').textContent = expiryDate;
+        document.getElementById('card-number').textContent = cardNumber;
     } else {
         alert('لم يتم تسجيل الدخول!');
         window.location.href = 'index.html'; // توجيه المستخدم إلى صفحة تسجيل الدخول
@@ -60,4 +64,17 @@ document.getElementById('download-pdf').addEventListener('click', function () {
         doc.addImage(imgData, 'PNG', 10, 10, 180, 100);
         doc.save('card.pdf');
     });
+});
+
+// تجديد البطاقة
+document.getElementById('renew-card').addEventListener('click', function () {
+    cardNumber++; // زيادة رقم البطاقة
+    const uniqueId = generateUniqueId(); // إنشاء رقم تعريف جديد
+    const { issueDate, expiryDate } = generateDates(); // إنشاء تواريخ جديدة
+
+    // تحديث البطاقة
+    document.getElementById('unique-id').textContent = uniqueId;
+    document.getElementById('issue-date').textContent = issueDate;
+    document.getElementById('expiry-date').textContent = expiryDate;
+    document.getElementById('card-number').textContent = cardNumber;
 });
