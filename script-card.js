@@ -28,7 +28,8 @@ window.onload = function () {
     if (user) {
         // إنشاء رقم تعريف وتواريخ تلقائية
         const uniqueId = generateUniqueId();
-        const { issueDate, expiryDate } = generateDates(12); // 12 شهرًا (سنة)
+        const duration = prompt('أدخل فترة الانتهاء بالأشهر (مثال: 12 لسنة):', 12); // اختيار فترة الانتهاء
+        const { issueDate, expiryDate } = generateDates(Number(duration));
 
         // عرض البطاقة
         document.getElementById('preview-name').textContent = user.name;
@@ -57,6 +58,11 @@ window.onload = function () {
         watermark.textContent = 'VALID';
         watermark.classList.add('watermark');
         cardElement.appendChild(watermark);
+
+        // إضافة شرطات على الزوايا
+        const cornerStripes = document.createElement('div');
+        cornerStripes.classList.add('corner-stripes');
+        cardElement.appendChild(cornerStripes);
     } else {
         alert('لم يتم تسجيل الدخول!');
         window.location.href = 'index.html'; // توجيه المستخدم إلى صفحة تسجيل الدخول
@@ -92,7 +98,8 @@ document.getElementById('renew-card').addEventListener('click', function () {
     cardNumber++; // زيادة رقم البطاقة
     localStorage.setItem('cardNumber', JSON.stringify(cardNumber)); // حفظ رقم البطاقة
     const uniqueId = generateUniqueId(); // إنشاء رقم تعريف جديد
-    const { issueDate, expiryDate } = generateDates(12); // 12 شهرًا (سنة)
+    const duration = prompt('أدخل فترة الانتهاء بالأشهر (مثال: 12 لسنة):', 12); // اختيار فترة الانتهاء
+    const { issueDate, expiryDate } = generateDates(Number(duration));
 
     // تحديث البطاقة
     document.getElementById('identifier').textContent = uniqueId;
