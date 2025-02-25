@@ -12,7 +12,10 @@ document.getElementById('login-form').addEventListener('submit', function (e) {
 
     if (user) {
         alert('تم تسجيل الدخول بنجاح!');
-        // توجيه المستخدم إلى صفحة البطاقة (يمكنك إضافة الرابط هنا)
+        // حفظ المستخدم الحالي في localStorage
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        // توجيه المستخدم إلى صفحة إنشاء البطاقة
+        window.location.href = 'card.html'; // تغيير الرابط إلى صفحة البطاقة
     } else {
         document.getElementById('login-error').classList.remove('hidden');
     }
