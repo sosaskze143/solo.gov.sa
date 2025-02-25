@@ -35,6 +35,14 @@ window.onload = function () {
         user.identifier = uniqueId;
         localStorage.setItem('currentUser', JSON.stringify(user));
 
+        // تحديث بيانات المستخدم في القائمة العامة
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        const userIndex = users.findIndex(u => u.id === user.id);
+        if (userIndex !== -1) {
+            users[userIndex] = user;
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
         // عرض البطاقة
         document.getElementById('preview-name').textContent = user.name;
         document.getElementById('unique-id').textContent = user.id;
@@ -108,6 +116,14 @@ document.getElementById('renew-card').addEventListener('click', function () {
     // تحديث بيانات المستخدم
     user.identifier = uniqueId;
     localStorage.setItem('currentUser', JSON.stringify(user));
+
+    // تحديث بيانات المستخدم في القائمة العامة
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    const userIndex = users.findIndex(u => u.id === user.id);
+    if (userIndex !== -1) {
+        users[userIndex] = user;
+        localStorage.setItem('users', JSON.stringify(users));
+    }
 
     // تحديث البطاقة
     document.getElementById('identifier').textContent = uniqueId;
