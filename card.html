@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -27,9 +28,10 @@
                     <p id="preview-birthdate">تاريخ الميلاد: <span id="birthdate"></span></p>
                     <p id="preview-issue-date">تاريخ الإصدار: <span id="issue-date"></span></p>
                     <p id="preview-expiry-date">تاريخ الانتهاء: <span id="expiry-date"></span></p>
+                    <p id="preview-identifier">رقم التعريف: <span id="identifier"></span></p>
                 </div>
                 <div class="security-strip"></div>
-                <div class="barcode"></div>
+                <svg id="barcode"></svg>
             </div>
             <button id="download-png">تحميل كصورة</button>
             <button id="download-pdf">تحميل كPDF</button>
