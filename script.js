@@ -1,11 +1,25 @@
 // بيانات المستخدمين (سيتم تخزينها في localStorage)
 let users = JSON.parse(localStorage.getItem('users')) || [];
 
+// بيانات المدير (يمكن تعديلها)
+const admin = {
+    id: "admin",
+    password: "admin123",
+    role: "admin"
+};
+
 // تسجيل الدخول
 document.getElementById('login-form').addEventListener('submit', function (e) {
     e.preventDefault();
     const id = document.getElementById('login-id').value;
     const password = document.getElementById('login-password').value;
+
+    // التحقق من تسجيل الدخول كمدير
+    if (id === admin.id && password === admin.password) {
+        alert('تم تسجيل الدخول كمدير بنجاح!');
+        window.location.href = 'admin.html'; // توجيه المدير إلى صفحة الإدارة
+        return;
+    }
 
     // البحث عن المستخدم
     const user = users.find(u => u.id === id && u.password === password);
