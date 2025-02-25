@@ -7,10 +7,10 @@ function generateUniqueId() {
 }
 
 // إنشاء تواريخ تلقائية
-function generateDates() {
-    const issueDate = new Date();
-    const expiryDate = new Date();
-    expiryDate.setFullYear(issueDate.getFullYear() + 1); // تاريخ الانتهاء بعد سنة من تاريخ الإصدار
+function generateDates(birthdate, duration) {
+    const issueDate = new Date(birthdate);
+    const expiryDate = new Date(issueDate);
+    expiryDate.setMonth(issueDate.getMonth() + duration); // تاريخ الانتهاء بعد فترة محددة
 
     return {
         issueDate: issueDate.toLocaleDateString('ar-SA'), // تنسيق التاريخ بالعربية
@@ -19,7 +19,7 @@ function generateDates() {
 }
 
 // إنشاء رقم بطاقة تلقائي
-let cardNumber = 1;
+let cardNumber = JSON.parse(localStorage.getItem('cardNumber')) || 1;
 
 // عرض بيانات المستخدم
 window.onload = function () {
@@ -28,7 +28,7 @@ window.onload = function () {
     if (user) {
         // إنشاء رقم تعريف وتواريخ تلقائية
         const uniqueId = generateUniqueId();
-        const { issueDate, expiryDate } = generateDates();
+        const { issueDate, expiryDate } = generateDates(user.birthdate, 12); // 12 شهرًا (سنة)
 
         // عرض البطاقة
         document.getElementById('preview-name').textContent = user.name;
@@ -38,7 +38,18 @@ window.onload = function () {
         document.getElementById('birthdate').textContent = user.birthdate;
         document.getElementById('issue-date').textContent = issueDate;
         document.getElementById('expiry-date').textContent = expiryDate;
+        document.getElementById('identifier').textContent = uniqueId;
         document.getElementById('card-number').textContent = cardNumber;
+
+        // إنشاء باركود لرقم التعريف
+        JsBarcode("#barcode", uniqueId, {
+            format: "CODE128",
+            displayValue: true,
+            fontSize: 16,
+            lineColor: "#000",
+            width: 2,
+            height: 50,
+        });
     } else {
         alert('لم يتم تسجيل الدخول!');
         window.location.href = 'index.html'; // توجيه المستخدم إلى صفحة تسجيل الدخول
@@ -69,12 +80,23 @@ document.getElementById('download-pdf').addEventListener('click', function () {
 // تجديد البطاقة
 document.getElementById('renew-card').addEventListener('click', function () {
     cardNumber++; // زيادة رقم البطاقة
+    localStorage.setItem('cardNumber', JSON.stringify(cardNumber)); // حفظ رقم البطاقة
     const uniqueId = generateUniqueId(); // إنشاء رقم تعريف جديد
-    const { issueDate, expiryDate } = generateDates(); // إنشاء تواريخ جديدة
+    const { issueDate, expiryDate } = generateDates(user.birthdate, 12); // 12 شهرًا (سنة)
 
     // تحديث البطاقة
-    document.getElementById('unique-id').textContent = uniqueId;
+    document.getElementById('identifier').textContent = uniqueId;
     document.getElementById('issue-date').textContent = issueDate;
     document.getElementById('expiry-date').textContent = expiryDate;
     document.getElementById('card-number').textContent = cardNumber;
+
+    // تحديث الباركود
+    JsBarcode("#barcode", uniqueId, {
+        format: "CODE128",
+        displayValue: true,
+        fontSize: 16,
+        lineColor: "#000",
+        width: 2,
+        height: 50,
+    });
 });
