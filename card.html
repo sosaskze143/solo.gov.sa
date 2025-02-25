@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء بطاقة تعريف</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="site-title">إنشاء بطاقة تعريف</h1>
+
+        <!-- معاينة البطاقة -->
+        <div id="card-preview">
+            <div class="card">
+                <div class="card-header">
+                    <img src="assets/images/user.png" alt="صورة المستخدم" class="user-image">
+                    <div class="card-title">بطاقة تعريف</div>
+                </div>
+                <div class="card-info">
+                    <h2 id="preview-name">الاسم</h2>
+                    <p id="preview-id">رقم الهوية: <span id="unique-id"></span></p>
+                    <p id="preview-gender">الجنس: <span id="gender"></span></p>
+                    <p id="preview-nationality">الجنسية: <span id="nationality"></span></p>
+                    <p id="preview-birthdate">تاريخ الميلاد: <span id="birthdate"></span></p>
+                    <p id="preview-issue-date">تاريخ الإصدار: <span id="issue-date"></span></p>
+                    <p id="preview-expiry-date">تاريخ الانتهاء: <span id="expiry-date"></span></p>
+                </div>
+                <div class="security-strip">يوم التأسيس</div>
+                <div class="barcode"></div>
+            </div>
+            <button id="download-png">تحميل كصورة</button>
+            <button id="download-pdf">تحميل كPDF</button>
+        </div>
+    </div>
+
+    <script src="script-card.js"></script>
+</body>
+</html>
