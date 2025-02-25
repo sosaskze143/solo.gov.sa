@@ -31,6 +31,10 @@ window.onload = function () {
         const duration = 12; // فترة الانتهاء الافتراضية (12 شهرًا)
         const { issueDate, expiryDate } = generateDates(duration);
 
+        // حفظ رقم التعريف في بيانات المستخدم
+        user.identifier = uniqueId;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+
         // عرض البطاقة
         document.getElementById('preview-name').textContent = user.name;
         document.getElementById('unique-id').textContent = user.id;
@@ -100,6 +104,10 @@ document.getElementById('renew-card').addEventListener('click', function () {
     const uniqueId = generateUniqueId(); // إنشاء رقم تعريف جديد
     const duration = 12; // فترة الانتهاء الافتراضية (12 شهرًا)
     const { issueDate, expiryDate } = generateDates(duration);
+
+    // تحديث بيانات المستخدم
+    user.identifier = uniqueId;
+    localStorage.setItem('currentUser', JSON.stringify(user));
 
     // تحديث البطاقة
     document.getElementById('identifier').textContent = uniqueId;
