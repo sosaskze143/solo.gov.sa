@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - بطاقة تعريف</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="site-title">بطاقة تعريف</h1>
+
+        <!-- تسجيل الدخول -->
+        <div id="login-section">
+            <h2>تسجيل الدخول</h2>
+            <form id="login-form">
+                <input type="text" id="login-id" placeholder="رقم الهوية" required>
+                <input type="password" id="login-password" placeholder="كلمة المرور" required>
+                <button type="submit">تسجيل الدخول</button>
+                <p id="login-error" class="error-message hidden">رقم الهوية أو كلمة المرور غير صحيحة!</p>
+            </form>
+            <p>ليس لديك حساب؟ <a href="#" id="register-link">إنشاء حساب</a></p>
+        </div>
+
+        <!-- إنشاء حساب -->
+        <div id="register-section" class="hidden">
+            <h2>إنشاء حساب</h2>
+            <form id="register-form">
+                <input type="text" id="register-name" placeholder="الاسم" required>
+                <input type="text" id="register-id" placeholder="رقم الهوية" required>
+                <input type="password" id="register-password" placeholder="كلمة المرور" required>
+                <select id="register-gender" required>
+                    <option value="">اختر الجنس</option>
+                    <option value="male">ذكر</option>
+                    <option value="female">أنثى</option>
+                </select>
+                <input type="text" id="register-nationality" placeholder="الجنسية" required>
+                <input type="date" id="register-birthdate" placeholder="تاريخ الميلاد" required>
+                <button type="submit">إنشاء حساب</button>
+                <p id="register-error" class="error-message hidden">حدث خطأ! الرجاء التحقق من البيانات.</p>
+            </form>
+            <p>لديك حساب؟ <a href="#" id="login-link">تسجيل الدخول</a></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
