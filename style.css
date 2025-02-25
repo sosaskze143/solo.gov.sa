@@ -7,10 +7,6 @@ body {
     margin: 0;
 }
 
-.hidden {
-    display: none;
-}
-
 .container {
     max-width: 600px;
     margin: 0 auto;
@@ -26,38 +22,85 @@ body {
     margin-bottom: 20px;
 }
 
-h2 {
-    font-size: 1.8rem;
-    color: #5a3a22; /* لون العناوين الفرعية */
+.card {
+    background-color: #ffffff;
+    border: 2px solid #5a3a22; /* لون حدود البطاقة */
+    border-radius: 15px;
+    padding: 20px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 20px;
 }
 
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.user-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #5a3a22; /* لون حدود الصورة */
 }
 
-input, select, button {
+.card-title {
+    font-size: 1.5rem;
+    color: #5a3a22; /* لون عنوان البطاقة */
+    font-weight: bold;
+}
+
+.card-info {
+    text-align: right;
+}
+
+.card-info h2 {
+    font-size: 1.8rem;
+    color: #5a3a22; /* لون الاسم */
+    margin-bottom: 10px;
+}
+
+.card-info p {
+    font-size: 1.2rem;
+    color: #5a3a22; /* لون النص */
+    margin: 5px 0;
+}
+
+.security-strip {
+    background-color: #ff8c42; /* لون الشريط البرتقالي */
+    color: #ffffff; /* لون النص على الشريط */
     padding: 10px;
-    border: 1px solid #5a3a22; /* لون الحدود */
+    font-weight: bold;
+    text-align: center;
     border-radius: 5px;
-    font-size: 1rem;
+    margin-top: 20px;
+    animation: moveStrip 2s infinite;
+}
+
+.barcode {
+    height: 50px;
+    background-color: #000;
+    margin: 20px 0;
+}
+
+@keyframes moveStrip {
+    0% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(-10px); }
 }
 
 button {
     background-color: #5a3a22; /* لون الخلفية للأزرار */
     color: #ffffff; /* لون النص على الأزرار */
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
+    margin: 10px;
+    font-size: 1rem;
 }
 
 button:hover {
     background-color: #ff8c42; /* لون الخلفية عند التمرير */
-}
-
-.error-message {
-    color: red; /* لون رسائل الخطأ */
-    font-size: 0.9rem;
-    margin-top: 10px;
 }
