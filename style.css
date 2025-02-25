@@ -78,11 +78,10 @@ button:hover {
     margin-bottom: 20px;
 }
 
-.user-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid #5a3a22; /* لون حدود الصورة */
+.card-number {
+    font-size: 1.2rem;
+    color: #5a3a22; /* لون رقم البطاقة */
+    font-weight: bold;
 }
 
 .card-title {
@@ -108,4 +107,17 @@ button:hover {
 }
 
 .security-strip {
-    background-color:
+    background-color: #000; /* لون الشريط الأسود */
+    color: #ffffff; /* لون النص على الشريط */
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.barcode {
+    height: 50px;
+    background-color: #000;
+    margin: 20px 0;
+}
