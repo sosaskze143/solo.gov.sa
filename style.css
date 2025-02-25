@@ -104,6 +104,12 @@ button:hover {
     font-size: 1.2rem;
     color: #5a3a22; /* لون النص */
     margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-info p span {
+    font-weight: bold;
 }
 
 .security-strip {
