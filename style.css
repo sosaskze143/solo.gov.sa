@@ -116,8 +116,6 @@ button:hover {
     margin-top: 20px;
 }
 
-.barcode {
-    height: 50px;
-    background-color: #000;
+#barcode {
     margin: 20px 0;
 }
