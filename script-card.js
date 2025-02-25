@@ -53,16 +53,9 @@ window.onload = function () {
 
         // إضافة علامة مائية
         const cardElement = document.querySelector('.card');
-        cardElement.style.position = 'relative';
         const watermark = document.createElement('div');
-        watermark.textContent = 'بطاقة تعريف';
-        watermark.style.position = 'absolute';
-        watermark.style.top = '50%';
-        watermark.style.left = '50%';
-        watermark.style.transform = 'translate(-50%, -50%) rotate(-45deg)';
-        watermark.style.fontSize = '3rem';
-        watermark.style.color = 'rgba(0, 0, 0, 0.1)';
-        watermark.style.zIndex = '1';
+        watermark.textContent = 'VALID';
+        watermark.classList.add('watermark');
         cardElement.appendChild(watermark);
     } else {
         alert('لم يتم تسجيل الدخول!');
