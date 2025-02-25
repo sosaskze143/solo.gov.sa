@@ -18,11 +18,16 @@ function displayUsers() {
 
 // بحث عن المستخدم باستخدام رقم التعريف
 document.getElementById('search-button').addEventListener('click', function () {
-    const searchId = document.getElementById('search-id').value;
+    const searchId = document.getElementById('search-id').value.trim(); // إزالة المسافات الزائدة
     const users = JSON.parse(localStorage.getItem('users')) || [];
     const searchResults = document.getElementById('search-results');
 
     searchResults.innerHTML = ''; // مسح نتائج البحث السابقة
+
+    if (!searchId) {
+        searchResults.innerHTML = '<li>الرجاء إدخال رقم تعريف للبحث.</li>';
+        return;
+    }
 
     const foundUser = users.find(user => user.identifier === searchId);
 
